@@ -1,0 +1,41 @@
+import java.util.Scanner;
+import java.util.Random;
+
+public class Chatbot {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Chatbot: Hi! How can I assist you today?");
+        
+        while (true) {
+            String input = scanner.nextLine().toLowerCase();
+            String response = getResponse(input);
+            System.out.println("Chatbot: " + response);
+            
+            if (input.equals("bye")) {
+                System.out.println("Chatbot: Goodbye!");
+                break;
+            }
+        }
+        scanner.close();
+    }
+    
+    public static String getResponse(String input) {
+        Random random = new Random();
+        String[] greetings = {"Hello!", "Hi there!", "Hey!", "Greetings!"};
+        String[] farewells = {"Goodbye!", "See you later!", "Farewell!", "Bye!"};
+        
+        if (input.contains("how are you")) {
+            return "I'm just a bot, but thanks for asking!";
+        } else if (input.contains("name")) {
+            return "I'm Chatbot, your virtual assistant.";
+        } else if (input.contains("weather")) {
+            return "I'm sorry, I cannot provide weather information at the moment.";
+        } else if (input.contains("help")) {
+            return "How can I assist you?";
+        } else if (input.equals("bye")) {
+            return farewells[random.nextInt(farewells.length)];
+        } else {
+            return greetings[random.nextInt(greetings.length)];
+        }
+    }
+}
